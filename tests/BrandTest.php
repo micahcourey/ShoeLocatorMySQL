@@ -107,12 +107,12 @@
         function testFind()
         {
             //Assert
-            $name = 'Payless';
+            $name = 'Gucci';
             $id = 1;
             $test_brand = new Brand($name, $id);
             $test_brand->save();
 
-            $name2 = 'Journey';
+            $name2 = 'Prada';
             $id2 = 2;
             $test_brand2 = new Brand($name2, $id2);
             $test_brand2->save();
@@ -123,6 +123,23 @@
 
             //Assert
             $this->assertEquals($test_brand, $result);
+        }
+
+        function testUpdate()
+        {
+            //Arrange
+            $name = 'Gucci';
+            $id = 1;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $new_name = 'Prada';
+
+            //Act
+            $test_brand->update($new_name);
+
+            //Assert
+            $this->assertEquals('Prada', $test_brand->getName());
         }
 
     }
