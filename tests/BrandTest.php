@@ -83,6 +83,27 @@
             $this->assertEquals([$test_brand, $test_brand2], $result);
         }
 
+        function testDeleteAll()
+        {
+            //Arrange
+            $name = 'Gucci';
+            $id = 1;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name2 = 'Prada';
+            $id2 = 2;
+            $test_brand2 = new Brand($name2, $id2);
+            $test_brand2->save();
+
+            //Act
+            Brand::deleteAll();
+
+            //Assert
+            $result = Brand::getAll();
+            $this->assertEquals([], $result);
+        }
+
     }
 
 ?>
