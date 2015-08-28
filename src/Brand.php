@@ -34,14 +34,14 @@
 
         function update($new_name)
         {
-            $GLOBALS['DB']->exec("UPDATE brands SET name = '{new_name}' WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE brands SET name = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setName($new_name);
         }
 
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
-            //$GLOBALS['DB']->exec("DELETE FROM brands_brands WHERE brand_id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE brand_id = {$this->getId()};");
         }
 
 

@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href='/'>PayMe Shoes</a>
+                <a class="navbar-book" href='/'>PayMe Shoes</a>
             </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div>
@@ -27,9 +27,9 @@
                     </form>
                 </div>
                 <div>
-                    <form action='/brand_results' class="navbar-form navbar-left">
+                    <form action='/book_results' class="navbar-form navbar-left">
                 <div class='form-group'>
-                    <input id='name' name='name' class='form-control' type='text' placeholder="enter a brand name ">
+                    <input id='name' name='name' class='form-control' type='text' placeholder="enter a book name ">
                     <button type="submit" class="btn btn-success">Search</button>
                 </div>
                     </form>
@@ -37,20 +37,17 @@
             </div>
         </div>
         </nav>
-        <div class="container">
-
-            <h1>update <em>{{ brand.getName }}</em></h1>
-            <form action="/brands/{{ brand.getId }}" method="post">
-            <input name="_method" type="hidden" value="patch">
-
-            <div class='form-group'>
-                <input id="name" name="name" type="text" placeholder="rename brand">
-                <button type="submit" class="btn-primary">Update</button>
-            </div>
-            <form action='/delete_brand' method='post'>
-                <button type='submit' class = "btn-danger">Delete this brand</button>
-            </form>
-        </form>
-        <div>
+        <div class='container'>
+            <h1>Search Result</h1>
+            <ul>
+                {% if matched_stores is not empty %}
+                    {% for store in matched_stores %}
+                        <h3><a href="/stores/{{ store.getId }}">{{ store.getName }}</a></h3>
+                    {% endfor %}
+                {% else %}
+                    <h4>No store match your search</h4>
+                {% endif %}
+            </ul>
+        </div>
     </body>
 </html>

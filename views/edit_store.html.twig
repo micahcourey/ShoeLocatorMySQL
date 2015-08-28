@@ -39,18 +39,18 @@
         </nav>
         <div class="container">
 
-            <h1>update <em>{{ brand.getName }}</em></h1>
-            <form action="/brands/{{ brand.getId }}" method="post">
+            <h1>update <em>{{ store.getName }}</em></h1>
+            <form action="/stores/{{ store.getId }}" method="post">
             <input name="_method" type="hidden" value="patch">
 
             <div class='form-group'>
-                <input id="name" name="name" type="text" placeholder="rename brand">
+                <input id="name" name="name" type="text" placeholder="rename store">
                 <button type="submit" class="btn-primary">Update</button>
             </div>
-            <form action='/delete_brand' method='post'>
-                <button type='submit' class = "btn-danger">Delete this brand</button>
+            <form action='/delete_store' method='post'>
+                <button type='submit' class = "btn-danger">Delete this store</button>
             </form>
-        </form>
+            </form>
         <div>
     </body>
 </html>

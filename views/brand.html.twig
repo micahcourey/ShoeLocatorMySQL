@@ -1,6 +1,6 @@
 <html>
     <head>
-        <name>PayMe Shoes</name>
+        <title>PayMe Shoes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
@@ -49,11 +49,11 @@
                 </ul>
             {% endif %}
 
-            <h4>Add an store to this brands:</h4>
+            <h4>Add a store to this brands:</h4>
 
             <form action='/add_stores' method='post'>
                 <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
-                <label for="store_id">Select an store</label>
+                <label for="store_id">Select a store</label>
                 <select id='store_id' name='store_id' type='text'>
                     {% for store in all_stores %}
                         <option value="{{ store.getId }}"> {{ store.getName }} </option>

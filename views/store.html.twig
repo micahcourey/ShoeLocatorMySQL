@@ -1,6 +1,6 @@
 <html>
     <head>
-        <name>PayMe Shoes</name>
+        <title>PayMe Shoes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
@@ -44,7 +44,7 @@
                 <p>Here are the brands:</p>
                 <ul>
                     {% for brand in brands %}
-                        <li>{{ brand.getTitle }}</li>
+                        <li>{{ brand.getName }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -56,11 +56,12 @@
                 <label for="brand_id">Select a brand</label>
                 <select id='brand_id' name='brand_id' type='text'>
                     {% for brand in all_brands %}
-                        <option value="{{ brand.getId }}"> {{ brand.getTitle }} </option>
+                        <option value="{{ brand.getId }}"> {{ brand.getName }} </option>
                     {% endfor %}
                 </select>
                 <button type='submit'>Add Brand</button>
             </form>
+            <p><a href="/stores/{{ store.getId }}/edit">Edit Store</a></p>
         </div>
     </body>
 </html>

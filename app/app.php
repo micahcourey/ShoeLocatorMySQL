@@ -96,7 +96,7 @@
         $name = $_GET['name'];
         ucfirst($name);
         foreach ($brands as $brand) {
-            if ($brand->getTitle() == $name)
+            if ($brand->getName() == $name)
              {
                  array_push($brand_matching_search, $brand);
              }
@@ -116,14 +116,30 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
     });
 
-    //delete individual
     $app->delete("/brands/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
         $brand->delete();
         return $app['twig']->render('index.html.twig', array('brands' => Brand::getAll()));
     });
 
-    //delete all
+    $app->get("/stores/{id}/edit", function($id) use ($app) {
+        $store = Store::find($id);
+        return $app['twig']->render('edit_store.html.twig', array('store' => $store));
+    });
+
+    $app->patch("/stores/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $store = Store::find($id);
+        $store->update($name);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'stores' => Store::getAll(), 'all_brands' => Brand::getAll()));
+    });
+
+    $app->delete("/stores/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->delete();
+        return $app['twig']->render('index.html.twig', array('stores' => Stores::getAll()));
+    });
+
     $app->post("/delete_brands", function() use ($app) {
         Brand::deleteAll();
         return $app['twig']->render('index.html.twig');
