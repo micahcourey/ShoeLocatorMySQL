@@ -48,6 +48,22 @@
             $this->assertEquals($id, $result);
         }
 
+        function testSave()
+        {
+            //Arrange
+            $name = 'Puma';
+            $id = 1;
+            $test_brand = new Brand($name);
+
+            //Act
+            $test_brand->save();
+
+            //Assert
+            $result = Brand::getAll();
+            $this->assertEquals($test_brand, $result[0]);
+        }
+
+
     }
 
 ?>
