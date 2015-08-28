@@ -182,7 +182,31 @@
             $this->assertEquals($test_brand->getStores(), [$test_store]);
         }
 
+        function testGetStores()
+        {
+            //arrange
+            $name = 'Gucci';
+            $id = 1;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
 
+            $name = 'Payless';
+            $id2 = 2;
+            $test_store = new Store($name, $id2);
+            $test_store->save();
+
+            $name2 = 'TJMax';
+            $id3 = 3;
+            $test_store2 = new Store($name2, $id3);
+            $test_store2->save();
+
+            //act
+            $test_brand->addStore($test_store);
+            $test_brand->addStore($test_store2);
+
+            //assert
+            $this->assertEquals($test_brand->getStores(), [$test_store, $test_store2]);
+        }
 
     }
 ?>

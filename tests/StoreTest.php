@@ -206,6 +206,5 @@
             $this->assertEquals($test_store->getBrands(), [$test_brand, $test_brand2]);
 
          }
-
     }
 ?>
