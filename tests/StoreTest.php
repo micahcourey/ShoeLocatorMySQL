@@ -26,5 +26,19 @@
             //assert
             $this->assertEquals($id, $result);
         }
+
+        function testGetId()
+        {
+            //arrange
+            $name = 'Payless';
+            $id = 1;
+            $test_store = new Store($id, $name);
+
+            //act
+            $result = $test_store->getId();
+
+            //assert
+            $this->assertEquals($id, $result);
+        }
     }
 ?>
