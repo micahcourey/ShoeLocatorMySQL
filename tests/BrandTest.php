@@ -7,7 +7,7 @@
     require_once "src/Brand.php";
     require_once "src/Store.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=shoe_brand_test';
+    $server = 'mysql:host=localhost:8889;dbname=shoe_store_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -182,7 +182,7 @@
             $this->assertEquals($test_brand->getStores(), [$test_store]);
         }
 
-        
+
 
     }
 ?>
