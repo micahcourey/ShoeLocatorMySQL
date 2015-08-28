@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <name>PayMe Shoes</name>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href='/'>PayMe Shoes</a>
+            </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div>
+                    <form action='/store_results' class="navbar-form navbar-left">
+                    <div class='form-group'>
+                        <input id='name' name='name' class='form-control' type='text' placeholder="enter a store name">
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </div>
+                    </form>
+                </div>
+                <div>
+                    <form action='/brand_results' class="navbar-form navbar-left">
+                <div class='form-group'>
+                    <input id='name' name='name' class='form-control' type='text' placeholder="enter a brand name ">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </nav>
+        <div class="container">
+            <h1>{{ book.getTitle }}</h1>
+
+            {% if books is not empty %}
+                <p>Here are the stores for this book:</p>
+                <ul>
+                    {% for store in stores %}
+                        <li>{{ store.getName }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <h4>Add an store to this books:</h4>
+
+            <form action='/add_stores' method='post'>
+                <input id="book_id" name="book_id" type="hidden" value="{{ book.getId }}">
+                <label for="store_id">Select an store</label>
+                <select id='store_id' name='store_id' type='text'>
+                    {% for store in all_stores %}
+                        <option value="{{ store.getId }}"> {{ store.getName }} </option>
+                    {% endfor %}
+                </select>
+                <button type='submit'>Add Author</button>
+            </form>
+            <p><a href="/books/{{ book.getId }}/edit">Edit book</a></p>
+        </div>
+    </body>
+</html>
