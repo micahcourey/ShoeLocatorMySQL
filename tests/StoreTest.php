@@ -122,6 +122,23 @@
             //Assert
             $this->assertEquals($test_store, $result);
         }
-        
+
+        function testUpdate()
+        {
+            //Arrange
+            $name = 'Payless';
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $new_name = 'Payme';
+
+            //Act
+            $test_store->update($new_name);
+
+            //Assert
+            $this->assertEquals('Payme', $test_store->getName());
+        }
+
     }
 ?>
