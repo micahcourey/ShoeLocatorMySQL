@@ -160,5 +160,25 @@
             $this->assertEquals([$test_store2], Store::getAll());
         }
 
+        function testAddBrand()
+        {
+            //arrange
+            $name = 'Payless';
+            $id =1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $title = 'Gucci';
+            $id2 = 2;
+            $test_brand = new Brand($title, $id2);
+            $test_brand->save();
+
+            //act
+            $test_store->addBrand($test_brand);
+
+            //assert
+            $this->assertEquals($test_store->getBrands(), [$test_brand]);
+        }
+
     }
 ?>
