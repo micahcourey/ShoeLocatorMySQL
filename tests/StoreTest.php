@@ -20,50 +20,50 @@
 
         function testGetName()
         {
-            //arrange
+            //Arrange
             $name = 'Payless';
             $id = null;
             $test_store = new Store($name, $id);
 
-            //act
+            //Act
             $result = $test_store->getId();
 
-            //assert
+            //Assert
             $this->assertEquals($id, $result);
         }
 
         function testGetId()
         {
-            //arrange
+            //Arrange
             $name = 'Payless';
             $id = 1;
             $test_store = new Store($name, $id);
 
-            //act
+            //Act
             $result = $test_store->getId();
 
-            //assert
+            //Assert
             $this->assertEquals($id, $result);
         }
 
         function testSave()
         {
-            //arrange
+            //Arrange
             $name = 'Payless';
             $id = 1;
             $test_store = new Store($name);
 
-            //act
+            //Act
             $test_store->save();
 
-            //assert
+            //Assert
             $result = Store::getAll();
             $this->assertEquals($test_store, $result[0]);
         }
 
         function testGetAll()
         {
-            //arrange
+            //Arrange
             $name = 'Payless';
             $id = 1;
             $test_store = new Store($name, $id);
@@ -74,16 +74,16 @@
             $test_store2 = new Store($name2, $id2);
             $test_store2->save();
 
-            //act
+            //Act
             $result = Store::getAll();
 
-            //assert
+            //Assert
             $this->assertEquals([$test_store, $test_store2], $result);
         }
 
         function testDeleteAll()
         {
-            //arrange
+            //Arrange
             $name = 'Payless';
             $id = 1;
             $test_store = new Store($name, $id);
@@ -94,12 +94,34 @@
             $test_store2 = new Store($name2, $id2);
             $test_store2->save();
 
-            //act
+            //Act
             Store::deleteAll();
 
-            //assert
+            //Assert
             $result = Store::getAll();
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            //Assert
+            $name = 'Payless';
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name2 = 'Journey';
+            $id2 = 2;
+            $test_store2 = new Store($name2, $id2);
+            $test_store2->save();
+
+            //Act
+            $id = $test_store->getId();
+            $result = Store::find($id);
+
+            //Assert
+            $this->assertEquals($test_store, $result);
+        }
+        
     }
 ?>
