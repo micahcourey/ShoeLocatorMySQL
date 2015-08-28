@@ -168,9 +168,9 @@
             $test_store = new Store($name, $id);
             $test_store->save();
 
-            $title = 'Gucci';
+            $name = 'Gucci';
             $id2 = 2;
-            $test_brand = new Brand($title, $id2);
+            $test_brand = new Brand($name, $id2);
             $test_brand->save();
 
             //act
@@ -179,6 +179,33 @@
             //assert
             $this->assertEquals($test_store->getBrands(), [$test_brand]);
         }
+
+        function testGetBrands()
+        {
+            //arrange
+            $name = 'Payless';
+            $id =1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name = 'Gucci';
+            $id2 = 2;
+            $test_brand = new Brand($name, $id2);
+            $test_brand->save();
+
+            $name2 = 'Prada';
+            $id3 = 3;
+            $test_brand2 = new Brand($name2, $id3);
+            $test_brand2->save();
+
+            //act
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
+
+            //assert
+            $this->assertEquals($test_store->getBrands(), [$test_brand, $test_brand2]);
+
+         }
 
     }
 ?>
