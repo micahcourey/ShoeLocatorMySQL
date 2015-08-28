@@ -7,7 +7,7 @@
     require_once "src/Brand.php";
     require_once "src/Store.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=shoe_store_test';
+    $server = 'mysql:host=localhost:8889;dbname=shoe_brand_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -161,5 +161,28 @@
             //Assert
             $this->assertEquals([$test_brand2], Brand::getAll());
         }
+
+        function testAddStore()
+        {
+            //arrange
+            $name = 'Gucci';
+            $id = 1;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name = 'Payless';
+            $id2 = 2;
+            $test_store = new Store($name, $id2);
+            $test_store->save();
+
+            //act
+            $test_brand->addStore($test_store);
+
+            //assert
+            $this->assertEquals($test_brand->getStores(), [$test_store]);
+        }
+
+        
+
     }
 ?>
