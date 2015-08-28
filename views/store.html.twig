@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>PayMe Shoes</title>
+        <name>PayMe Shoes</name>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
@@ -29,7 +29,7 @@
                 <div>
                     <form action='/brand_results' class="navbar-form navbar-left">
                 <div class='form-group'>
-                    <input id='title' name='title' class='form-control' type='text' placeholder="enter a brand name ">
+                    <input id='name' name='name' class='form-control' type='text' placeholder="enter a brand name ">
                     <button type="submit" class="btn btn-success">Search</button>
                 </div>
                     </form>
@@ -38,11 +38,29 @@
         </div>
         </nav>
         <div class="container">
-            <h3>PayMe Shoe Locator</h3>
-            <div class="span10 well">
-                <h4><a href="/stores">Add or view a Store</a></h4>
-                <h4><a href="/brands">Add or view a Brand</a></h4>
-            </div>
+            <h1>{{ store.getName }}</h1>
+
+            {% if stores is not empty %}
+                <p>Here are the brands:</p>
+                <ul>
+                    {% for brand in brands %}
+                        <li>{{ brand.getTitle }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <h4>Add a brand to this store:</h4>
+
+            <form action='/add_brands' method='post'>
+                <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+                <label for="brand_id">Select a brand</label>
+                <select id='brand_id' name='brand_id' type='text'>
+                    {% for brand in all_brands %}
+                        <option value="{{ brand.getId }}"> {{ brand.getTitle }} </option>
+                    {% endfor %}
+                </select>
+                <button type='submit'>Add Brand</button>
+            </form>
         </div>
     </body>
 </html>
